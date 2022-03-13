@@ -1,0 +1,58 @@
+﻿@*
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>this is index</h1>
+
+*@
+
+@model IEnumerable<WebApplication2.Models.Expenses>
+
+<div class="container p-3">
+   <div class="row pt-4">
+        <div class="col-6">
+             <h2 class="text-primary">Expenses list</h2>
+        </div>
+   <div class="col-6 text-right">
+       <a asp-controller="Expenses" asp-action="Create" class="btn btn-primary">Create new Expense</a>
+    </div>
+</div>
+    <br />
+    @if(Model.Count() >0)
+    {<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Expenses</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var Expenses in Model)
+       {
+       <tr>
+      @*<th scope="row"></th>*@
+      <td width="35%">@Expenses.Id</td>
+      <td width="35%">@Expenses.Expanse</td>
+      <td width="30%">@Expenses.Amount</td>
+      <td>
+          <div class="w-100 btn-group" role="group">
+         <a asp-controller="Expenses" asp-action="Update" asp-route-ID="@Expenses.Id" class="btn btn-primary mx-1">Update</a>
+         <a asp-controller="Expenses" asp-action="Delete" asp-route-ID="@Expenses.Id" class="btn btn-danger mx">Delete</a>
+
+      </div>
+      </td>
+      
+
+
+    </tr>
+       }
+                
+  </tbody>
+</table>
+      
+
+    }
+</div>
+    
